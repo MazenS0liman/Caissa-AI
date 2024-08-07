@@ -7,10 +7,7 @@
 Eureka is an approach that provides reasoning and understanding of the chess move. It transmits information represented in the knowledge base in Prolog to nodes and edges as a knowledge graph in Neo4j that can be queried directly to retrieve structured information from the knowledge graph. This information advocates the reasoning behind the suggested move. This allows to build dynamic ontologies as a solution where static ontologies would fail, since small variances between chessboards can have an enormous difference in the information represented in the ontology. By leveraging the capabilities of combining both a large model called Gemini and the existing knowledge in Neo4j using LangChain, Eureka is capable of creating chess commentary based on user input related to piece positions and relations between pieces on a chessboard and providing a move commentary. Eureka also utilizes a newly introduced library called LangGraph to implement a verification module that acts as a guard to prevent any incorrectly generated commentary where the results obtained from the system almost contain no hallucinations. This prototype can be scaled to be a software solution that assists in teaching beginners chess rules and tactics, where existing solutions either provide a basic explanation or statistical representation that does not help a beginner understand the reason behind a chess move.
 
 ## Video
-<video width="320" height="240" autoplay>
-  <source src="videos/eureka.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+<video src='videos/eureka.mp4' width='100%' align="center" style="margin-right: 10px;"/>
 
 ## Architecture
 ### Eureka's Architecture
@@ -125,7 +122,64 @@ Customize the chessboard theme to your preference (more themes coming soon!).
 <img src="images/eureka_speak.jpeg" alt="Eureka Speak Image" align="center" style="margin-right: 10px;"/>
 
 ## Code Snippets
-### Chat with Reinforced Eureka
+### Build Knowledge Graph with Multiprocessing
+```python
+def add_tactics_to_graph(filepath, fen_string):
+    '''
+    Add all supported tactics relations to the knowledge graph.
+    
+    :param: :filepath: prolog file path
+    :param: :fen_string: current forsyth-edwards notation of a chessboard
+    
+    :return: #### None
+    '''
+    
+    # Tactics
+    with multiprocessing.get_context('spawn').Pool(processes=os.cpu_count()) as pool:
+        tactics = [
+            (Symbolic.mate, "white", "Mate"),
+            (Symbolic.create_fork_relation, "white", "Fork"),
+            (Symbolic.create_absolute_pin_relation, "white", "Absolute Pin"),
+            (Symbolic.create_relative_pin_relation, "white", "Relative Pin"),
+            (Symbolic.create_skewer_relation, "white", "Skewer"),
+            (Symbolic.create_discovery_attack_relation, "white", "Discover Attack"),
+            (Symbolic.hanging_piece, "white", "Hanging Piece"),
+            (Symbolic.create_interference_relation, "white", "Interference"),
+            (Symbolic.create_mate_in_two_relation, "white", "Mate in 2"),
+            (Symbolic.defend, "white", "Defend"),
+            (Symbolic.threat, "white", "Threat"),
+            (Symbolic.move_defend, "white", "Move Defend"),
+            (Symbolic.move_threat, "white", "Move Threat"),
+            (Symbolic.protected_move, "white", "Protected Move"),
+            (Symbolic.attackted_move, "white", "Attacked Move"),
+            (Symbolic.mate, "black", "Mate"),
+            (Symbolic.create_fork_relation, "black", "Fork"),
+            (Symbolic.create_absolute_pin_relation, "black", "Absolute Pin"),
+            (Symbolic.create_relative_pin_relation, "black", "Relative Pin"),
+            (Symbolic.create_skewer_relation, "black", "Skewer"),
+            (Symbolic.create_discovery_attack_relation, "black", "Discover Attack"),
+            (Symbolic.hanging_piece, "black", "Hanging Piece"),
+            (Symbolic.create_interference_relation, "black", "Interference"),
+            (Symbolic.create_mate_in_two_relation, "black", "Mate in 2"),
+            (Symbolic.defend, "black", "Defend"),
+            (Symbolic.threat, "black", "Threat"),
+            (Symbolic.move_defend, "black", "Move Defend"),
+            (Symbolic.move_threat, "black", "Move Threat"),
+            (Symbolic.protected_move, "black", "Protected Move"),
+            (Symbolic.attackted_move, "black", "Attacked Move")
+        ]
+        
+        results = [
+            pool.apply_async(execute_tactic, (tactic_method, color, description, filepath, fen_string))
+            for tactic_method, color, description in tactics
+        ]
+        
+        # Ensure all tasks are completed
+        for r in results:
+            r.get()
+```
+
+### Chat with Reinforced Eureka with LangGraph
 ```python
 def chat(input, fen_string) -> str:
     '''
