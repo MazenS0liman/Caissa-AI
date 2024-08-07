@@ -8,7 +8,7 @@ Eureka is an approach that provides reasoning and understanding of the chess mov
 
 ## Video
 [<video src='videos/eureka.mp4' width='100%' align="center" style="margin-right: 10px;"/>
-](https://github.com/MazenS0liman/Eureka/blob/main/videos/eureka.mp4)
+](videos/eureka.mp4)
 
 ## Architecture
 ### Eureka's Architecture
