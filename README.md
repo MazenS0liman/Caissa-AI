@@ -9,6 +9,9 @@ Eureka is an approach that provides reasoning and understanding of the chess mov
 ## Video
 [Watch the video](https://drive.google.com/file/d/109L0mo1Y_B_1MFQu7X7j_I5B7vdpZXR6/view?usp=sharing)
 
+<iframe src="https://drive.google.com/file/d/109L0mo1Y_B_1MFQu7X7j_I5B7vdpZXR6/view?usp=sharing" ></iframe>
+
+
 ## Architecture
 ### Eureka's Architecture
 As an approach for creating a system capable of generating chess commentary and diminishes the amount of hallucination. Eureka grounds Gemini LLM, which is Gemini with the built knowledge graphs in Neo4j, which result in the construction of a Retrieval Augmented Generation (RAG) system that enhances the outcome of large language model (LLM) based on the facts stored in the knowledge graph in Neo4j.
