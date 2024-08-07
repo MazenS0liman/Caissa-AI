@@ -1,0 +1,7 @@
+langchain
+openai
+langchain_openai
+neo4j-driver
+streamlit
+torch
+dotenv

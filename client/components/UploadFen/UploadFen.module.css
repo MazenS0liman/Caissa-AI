@@ -1,0 +1,95 @@
+/* DIV */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5); /* Semi-transparent gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Make sure this is below the main-div */
+}
+
+.main-div {
+    width: 50%;
+    height: fit-content;
+
+    position: fixed;
+    background: linear-gradient(135deg, #606066, #05011f) border-box;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.6px);
+    -webkit-backdrop-filter: blur(8.6px);
+    border: 1px solid rgb(0, 0, 0);
+
+    bottom: 50%;
+    left: 25%;
+    z-index: 1000;
+}
+
+.input-div {
+    width: 100%;
+}
+
+.header-div {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    background: transparent;
+    -webkit-backdrop-filter: blur(8.6px);
+}
+
+.cross-div {
+    width: 30%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* INPUT */
+.fen-input {
+    width: 85%;
+    height: 50px;
+    border: none;
+    background-image: none;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    margin: 10px;
+    border-radius: 1.125rem;
+    font-family: Red hat Display, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+}
+
+/* P */
+.title {
+    width: fit-content;
+    font-family: "Pacifico", cursive;
+    font-weight: 100;
+    font-size: 23px;
+    color: white;
+    font-style: normal;
+    margin: 7px;
+    padding: 10px;
+}
+
+/* BUTTON */
+.cross-button, .send-button {
+    width: 40px;
+    height: 40px;
+    border: 3px solid white;
+    margin: 10px;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+

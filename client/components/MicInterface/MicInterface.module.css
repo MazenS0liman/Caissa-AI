@@ -1,0 +1,62 @@
+/* DIV */
+.main-div {
+    width: 100%;
+    height: 100%;
+}
+
+.overlay-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5); /* Semi-transparent gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Make sure this is below the main-div */
+}
+
+.user-div {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bot-div {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cross-div {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* IMG */
+.cross-img {
+    width: 60px;
+    height: 60px;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+.bot-img {
+    width: 150px;
+    height: 150px;
+}
+
+.user-img {
+    width: 100px;
+    height: 100px;
+}
+
+

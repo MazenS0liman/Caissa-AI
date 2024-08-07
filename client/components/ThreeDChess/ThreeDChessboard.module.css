@@ -1,0 +1,17 @@
+
+.base-board {
+    position: relative;
+    cursor: default;
+    height: 455px !important;
+    width: 445px !important;
+    transform: rotateX(27.5deg);
+    transform-origin: center center;
+    border-width: 0px 2px 18px;
+    border-style: outset;
+    border-color: rgb(184, 131, 111) rgb(178, 124, 103) rgb(184, 131, 111) rgb(184, 131, 111);
+    border-image: initial;
+    border-radius: 8px 8px 4px 4px;
+    box-shadow: rgba(0, 0, 0, 0.5) 2px 24px 24px 8px;
+    padding: 2px;
+    background: 0% 0% / cover rgb(224, 192, 148);
+}
