@@ -7,9 +7,6 @@
 Eureka is an approach that provides reasoning and understanding of the chess move. It transmits information represented in the knowledge base in Prolog to nodes and edges as a knowledge graph in Neo4j that can be queried directly to retrieve structured information from the knowledge graph. This information advocates the reasoning behind the suggested move. This allows to build dynamic ontologies as a solution where static ontologies would fail, since small variances between chessboards can have an enormous difference in the information represented in the ontology. By leveraging the capabilities of combining both a large model called Gemini and the existing knowledge in Neo4j using LangChain, Eureka is capable of creating chess commentary based on user input related to piece positions and relations between pieces on a chessboard and providing a move commentary. Eureka also utilizes a newly introduced library called LangGraph to implement a verification module that acts as a guard to prevent any incorrectly generated commentary where the results obtained from the system almost contain no hallucinations. This prototype can be scaled to be a software solution that assists in teaching beginners chess rules and tactics, where existing solutions either provide a basic explanation or statistical representation that does not help a beginner understand the reason behind a chess move.
 
 ## Video
-[<video src='videos/eureka.mp4' width='100%' align="center" style="margin-right: 10px;"/>
-](videos/eureka.mp4)
-
 [![Watch the video]()](https://github.com/MazenS0liman/Eureka/blob/main/videos/eureka.mp4)
 
 ## Architecture
