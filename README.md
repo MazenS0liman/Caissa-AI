@@ -123,7 +123,7 @@ Customize the chessboard theme to your preference (more themes coming soon!).
 
 ## Tactics & Concepts
 ### Tactics
-The following table demonstrate tactics that are supported by eureka.
+The following table demonstrate tactics that are supported by basic eureka.
 
 **Tactic**  | **Definition**
 ------------- | -------------
@@ -139,7 +139,7 @@ The following table demonstrate tactics that are supported by eureka.
 **Interference** | An interference occurs when there is a move that interferes between opponent pieces where one of the pieces defends the other piece.
 
 ### Concepts
-The following table demonstrate concepts that are supported by eureka.
+The following table demonstrate concepts that are supported by both basic and reinforced eureka.
 
 **Concept**  | **Definition**
 ------------- | -------------
