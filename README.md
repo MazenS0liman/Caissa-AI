@@ -308,14 +308,14 @@ def chat(input, fen_string) -> str:
     ./start.exe
     ```
 
-## Contribute
-Eureka is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
-
 > [!NOTE]  
 > Eureka requires lots of computational power, so it tends to run slowly on older devices.
 
 > [!CAUTION]
 > Although the verifier module was added to Eureka to reduce the occurrence of hallucinations, it can still make mistakes.
+
+## Contribute
+Eureka is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
 
 ## Hope You Enjoy :heart:
 <img src="images/flower.png" alt="Eureka Example Image" align="center" style="margin: 10px;"/>
