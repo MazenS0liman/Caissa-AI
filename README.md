@@ -11,7 +11,7 @@ https://github.com/user-attachments/assets/6b49da4f-532f-480b-a69e-00d359e66eeb
 
 ## Architecture
 ### Eureka's Architecture
-As an approach for creating a system capable of generating chess commentary and diminishes the amount of hallucination. Eureka grounds Gemini LLM, which is Gemini with the built knowledge graphs in Neo4j, which result in the construction of a Retrieval Augmented Generation (RAG) system that enhances the outcome of large language model (LLM) based on the facts stored in the knowledge graph in Neo4j.
+As an approach for creating a system capable of generating chess commentary and diminishes the amount of hallucination. Eureka grounds LLM, which is Gemini with the built knowledge graphs in Neo4j, which result in the construction of a Retrieval Augmented Generation (RAG) system that enhances the outcome of large language model (LLM) based on the facts stored in the knowledge graph in Neo4j.
 
 Eureka utilizes LangChain that allow to create agents from Large Language Models such as Gemini and specify the purpose of each agent using Prompt Engineering by specifying its role and context and giving it examples of how to perform its task. The process of providing chess commentary is the following:
 1. User clicks on the toggle button to use Gemini and sends a request from the browser using Next.js with a query in natural language.
