@@ -121,6 +121,35 @@ Customize the chessboard theme to your preference (more themes coming soon!).
 ### Speak to Eureka
 <img src="images/eureka_speak.jpeg" alt="Eureka Speak Image" align="center" style="margin-right: 10px;"/>
 
+## Tactics & Concepts
+### Tactics
+The following table demonstrate tactics that are supported by eureka.
+
+**Tactic**  | **Definition**
+------------- | -------------
+**Fork**  | A fork occurs when an ally piece can threat two or more pieces at the same time.
+**Discover attack**  | A discover attack occurs when an ally piece is moved such that it allows another ally piece to attack opponent’s piece that was previously blocked.
+**Discover check** | A discover check occurs when an ally piece is moved such that it allows another ally piece to check the opponent’s king.
+**Skewer** | A skewer occurs when two opponent pieces are aligned such that an ally piece causes a threat to the more valuable opponent piece, where the move of the more valuable piece would result in the capture of the less or equal valuable opponent piece by the same ally piece.
+**Relative pin** | A relative pin occurs when a less valuable opponent piece is aligned with a more valuable opponent piece, such that if the less valuable opponent piece moved, it would cause the more valuable opponent piece to be captured.
+**Absolute pin** | An absolute pin occurs when an opponent piece is aligned with the opponent king such that if the opponent piece moved, it would cause the king to be checked.
+**Hanging piece** | A hanging piece is an opponent piece that can be captured and there is no other opponent piece that can defend it.
+**Mate in one** | A mate in one occurs when there is a single move that would cause the opponent to be checkmated.
+**Mate in two** | A mate in two occurs when there are two moves that would cause the opponent to be checkmated.
+**Interference** | An interference occurs when there is a move that interferes between opponent pieces where one of the pieces defends the other piece.
+
+### Concepts
+The following table demonstrate concepts that are supported by eureka.
+
+**Concept**  | **Definition**
+------------- | -------------
+**Defend** | Whether a piece can defend or protect the ally piece directly.
+**Threat** | Whether an opponent piece such that piece can attack or threat the opponent directly.
+**Move defend** | A move made by a piece from its current position to new position to defend an ally piece on a third different position.
+**Move is protected** | A move made by a piece from its current position to new position and it is protected by an ally piece on a third different position at the new position.
+**Move threat** | A move made by a piece from its current position to new position to attack an opponent piece on a third different position.
+**Move is attacked** | A move made by a piece from its current position to new position and it is attacked by an opponent piece on a third different position at the new position.
+
 ## Code Snippets
 ### Build Knowledge Graph with Multiprocessing
 ```python
@@ -282,8 +311,11 @@ def chat(input, fen_string) -> str:
 ## Contribute
 Eureka is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
 
-## Note
-Eureka requires lots of computational power, so it tends to run slowly on older devices.
+> [!NOTE]  
+> Eureka requires lots of computational power, so it tends to run slowly on older devices.
+
+> [!CAUTION]
+> Even though the verifier module was added to eureka which helps in diminshing the amount of hallucniation it can still make mistakes.
 
 ## Hope You Enjoy :heart:
 <img src="images/flower.png" alt="Eureka Example Image" align="center" style="margin: 10px;"/>
