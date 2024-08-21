@@ -315,7 +315,7 @@ Eureka is still in its prototype stage and could be improved with additional log
 > Eureka requires lots of computational power, so it tends to run slowly on older devices.
 
 > [!CAUTION]
-> Even though the verifier module was added to eureka which helps in diminshing the amount of hallucniation it can still make mistakes.
+> Although the verifier module was added to Eureka to reduce the occurrence of hallucinations, it can still make mistakes.
 
 ## Hope You Enjoy :heart:
 <img src="images/flower.png" alt="Eureka Example Image" align="center" style="margin: 10px;"/>
