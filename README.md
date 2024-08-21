@@ -27,7 +27,7 @@ Let’s call the first agent “the conductor” which is a person who directs t
 In the following, more explanation will be provided for step number 4 in the process. After the conductor receives a question from the user, it determines which tool
 to pick. The options are the GraphCypherQA Chain tool, responsible for generating Cypher queries and executing them to retrieve an answer usable by the conductor for generating chess commentary, or the Chess Solver Chain tool, which utilizes a neurosymbolic module to provide a chess move suggestion from [ChessGPT](https://arxiv.org/abs/2306.09200) and its corresponding tactic.
 
-If the conductor choses the GraphCypherQA Chain tool then it is capable of grounding LLM based on the context stored in the knowledge graph in Neo4j, built using Prolog, will be demonstrated to derive the correct response to a user query.
+If the conductor choses the GraphCypherQA Chain tool then it is capable of grounding LLM based on the context stored in the knowledge graph in Neo4j, built using Prolog, to derive the correct response to a user query.
 
 <img src="images/eureka_commentary_example_diagram.png" alt="Eureka Example Image" align="center" style="margin: 10px;"/>
 
