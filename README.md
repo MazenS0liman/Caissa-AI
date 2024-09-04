@@ -86,10 +86,6 @@ Customize the chessboard theme to your preference (more themes coming soon!).
 
 * **Gemini**: A platform and model designed for integrating large language model that can be tuned using prompt engineering and other technologies.
 
-* **LangChain**: A framework for developing applications powered by language models. It provides a comprehensive set of tools for building, deploying, and managing language model-based applications.
-
-* **LangGraph**: A library designed to integrate graph databases and knowledge graphs with language models, enhancing the ability to query and reason about structured data.
-
 * **Hugging Face**: A machine learning (ML) and data science platform and community that helps users build, deploy and train machine learning models.
 
 * **SWI-Prolog**: A declarative programming language that enforces chess logic by providing a robust framework for representing and reasoning about chess rules and strategies.
@@ -97,7 +93,9 @@ Customize the chessboard theme to your preference (more themes coming soon!).
 
 ## Credits
 ### Libraries
-* [React Chessboard](https://github.com/Clariity/react-chessboard): Credits to the creators of the React Chessboard for providing a Chessboard UI that backend logic can be integrated to it.
+* [LangChain](https://github.com/langchain-ai/langchain): A library for developing applications powered by language models. It provides a comprehensive set of tools for building, deploying, and managing language model-based applications.
+* [LangGraph](https://github.com/langchain-ai/langgraph): A library designed to integrate graph databases and knowledge graphs with language models, enhancing the ability to query and reason about structured data.
+* [React Chessboard](https://github.com/Clariity/react-chessboard): A library that provides a customizable chessboard UI.
   
 ### Resources
 * [3D Icons](https://3dicons.co/): Credits to the creators for providing 3D icons that enhance user experience.
