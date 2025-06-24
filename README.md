@@ -324,7 +324,7 @@ def chat(input, fen_string) -> str:
     ./start.exe
     ```
 
-## Note :warning:
+## :warning: Note
 - Eureka requires lots of computational power, so it tends to run slowly on older devices.
 - To chat with Eureka you need to toggle the button first.
 
