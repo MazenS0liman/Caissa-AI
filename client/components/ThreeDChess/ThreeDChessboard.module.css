@@ -3,10 +3,10 @@
     position: relative;
     cursor: default;
     height: 455px !important;
-    width: 445px !important;
+    width: 455px !important;
     transform: rotateX(27.5deg);
     transform-origin: center center;
-    border-width: 0px 2px 18px;
+    border-width: 0px 2px 2px;
     border-style: outset;
     border-color: rgb(184, 131, 111) rgb(178, 124, 103) rgb(184, 131, 111) rgb(184, 131, 111);
     border-image: initial;

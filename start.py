@@ -1,5 +1,7 @@
 import os
 import threading
+import warnings
+warnings.filterwarnings("ignore")
 
 def start_client():
     os.chdir("client")  # Change to the client directory
@@ -13,7 +15,7 @@ if __name__ == "__main__":
     
     t1 = threading.Thread(target=start_server, args=())
     t2 = threading.Thread(target=start_client, args=())
-    
+
     t1.start()
     t2.start()
     

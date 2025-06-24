@@ -1,6 +1,7 @@
-from langchain.chains import GraphCypherQAChain
+from langchain_neo4j import GraphCypherQAChain
 from langchain.prompts.prompt import PromptTemplate
-from gemini_llm import llm
+# from gemini_llm import llm
+from llama_llm import llm
 from graph import graph
 
 CYPHER_GENERATION_TEMPLATE = """
@@ -228,7 +229,9 @@ cypher_qa = GraphCypherQAChain.from_llm(
     cypher_prompt=cypher_prompt,
     # return_intermediate_steps=True,
     return_direct=True,
-    validate_cypher=True,
-    handle_parsing_errors="If the generate Cypher Query syntax is incorrect or invalid, you MUST use FULL CONTEXT If output list is NOT EMPTY OTHERWISE TRY AGAIN",
+    # validate_cypher=True,
+    allow_dangerous_requests=True,
+    handle_parsing_errors="ignore",
+    handle_execution_errors="ignore",
 )
 

@@ -1,4 +1,3 @@
-from crypt import methods
 from os.path import join, dirname
 from dotenv import load_dotenv
 from pyswip import Prolog
@@ -1007,7 +1006,7 @@ class Symbolic():
         finally:
             query.close()
 
-    def attackted_move(self, player):
+    def attacked_move(self, player):
         try:
             query = self.prolog.query(f"""moves_is_attacked({player}, ListOfMoves)""")
             result = list(query)
@@ -1117,7 +1116,6 @@ class Symbolic():
         query = None
         try:
             query = self.prolog.query(f"""occupies(Piece, Color, Position)""")
-            list(self.prolog.query(f"""display_board"""))
             result = list(query)
             board = [[' '] * 8 for _ in range(8)]
             color = None
@@ -1164,7 +1162,6 @@ class Symbolic():
         try:
             query = self.prolog.query(f"""make_move({piece}, {color}, {from_position}, {to_position})""")
             result = list(query) # execute prolog query
-            list(self.prolog.query(f"""display_board"""))
             return result, self.get_board()
         except Exception as e:
             print(f"Error during Prolog query: {e}")

@@ -11,7 +11,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 KB_PATH = os.getenv('KB_PATH')
-print(f"""KB: {KB_PATH}""")
+# print(f"""KB: {KB_PATH}""")
 
 class bcolors:
     HEADER = '\033[95m'

@@ -253,7 +253,7 @@ def chat(input, fen_string) -> str:
 * **Endpoint**: `set_fen`
 * **Method**: POST
 * **Description**: Set a forsyth-edwards notation.
-  
+
 #### Move a Chess Piece
 * **Endpoint**: `make_move`
 * **Method**: POST
@@ -266,6 +266,12 @@ def chat(input, fen_string) -> str:
 ### 2. Obtain Your Tokens
 * **NEO4J Token:** Get your token from [Neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started).
 * **GEMINI Token:** Generate your token through [AI Studio](https://aistudio.google.com/app/apikey).
+* **Groq Toen:** Generate your token from [Groq](https://console.groq.com/keys).
+
+## Requirements
+
+- **Python**: ≥ 3.10  
+- **OS**: Linux or WSL on Windows
 
 ## Usage Instructions
 ### 1. Configure Tokens:
@@ -281,6 +287,10 @@ def chat(input, fen_string) -> str:
     ```
     npm install
     ```
+  * Build the app:
+    ```
+    npm run build
+    ```
   * Return to the root directory:
     ```
     cd ..
@@ -290,6 +300,14 @@ def chat(input, fen_string) -> str:
   * Navigate to the **server** directory:
     ```
     cd server
+    ```
+  * Create a virtual environment **proj_env**:
+    ```
+    python3 -m venv proj_env
+    ```
+  * Activate the virtual environment:
+    ```
+    source proj_env/bin/activate
     ```
   * Install the required Python packages:
     ```
@@ -306,8 +324,9 @@ def chat(input, fen_string) -> str:
     ./start.exe
     ```
 
-> [!NOTE]  
-> Eureka requires lots of computational power, so it tends to run slowly on older devices.
+## Note :warning:
+- Eureka requires lots of computational power, so it tends to run slowly on older devices.
+- To chat with Eureka you need to toggle the button first.
 
 > [!CAUTION]
 > Although the verifier module was added to Eureka to reduce the occurrence of hallucinations, it can still make mistakes.

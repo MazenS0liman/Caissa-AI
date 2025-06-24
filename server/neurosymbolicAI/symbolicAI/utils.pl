@@ -1397,7 +1397,7 @@ move_condition_undo(Piece, Color, Position, NewPosition, Condition) :-
 			enpassant(OpponentPiece, black, OpponentPosition),
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			(
 				X3 is X1 + 1
 			;
@@ -1412,7 +1412,7 @@ move_condition_undo(Piece, Color, Position, NewPosition, Condition) :-
 			enpassant(OpponentPiece, white, OpponentPosition),
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			(
 				X3 is X1 + 1
 			;
@@ -1445,7 +1445,7 @@ move_condition_undo(Piece, Color, Position, NewPosition, Condition) :-
 		(
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			enpassant(pawn, black, OpponentPosition),
 			(
 				X3 is X1 + 1
@@ -1477,7 +1477,7 @@ move_condition_undo(Piece, Color, Position, NewPosition, Condition) :-
 		(
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			enpassant(pawn, white, OpponentPosition),
 			(
 				X3 is X1 + 1

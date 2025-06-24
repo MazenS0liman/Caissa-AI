@@ -1409,7 +1409,7 @@ all_piece_legal_moves(Piece, Color, Position, L1, L2) :-
 			enpassant(OpponentPiece, black, OpponentPosition),
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			(
 				X3 is X1 + 1
 			;
@@ -1424,7 +1424,7 @@ all_piece_legal_moves(Piece, Color, Position, L1, L2) :-
 			enpassant(OpponentPiece, white, OpponentPosition),
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			(
 				X3 is X1 + 1
 			;
@@ -1458,7 +1458,7 @@ all_piece_legal_moves(Piece, Color, Position, L1, L2) :-
 		(
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			enpassant(pawn, black, OpponentPosition),
 			(
 				X3 is X1 + 1
@@ -1492,7 +1492,7 @@ all_piece_legal_moves(Piece, Color, Position, L1, L2) :-
 		(
 			Piece == pawn,
 			OpponentPiece == pawn,
-			(X3, Y3) = OpponentPosition,
+			(X3, _) = OpponentPosition,
 			enpassant(pawn, white, OpponentPosition),
 			(
 				X3 is X1 + 1

@@ -172,68 +172,78 @@ export const ThreeDChess = ({ cause = [], displayLoading, editBoard, clickedPiec
       }
     }
 
-    function onDrop(sourceSquare: string, targetSquare: string, piece: string): boolean | any {
-      let pieceName = '';
-      let color = piece[0] === 'w' ? 'white' : 'black';
-      let [x1, y1] = getPosition(sourceSquare);
-      let [x2, y2] = getPosition(targetSquare);
-      let promotion: boolean = (Number(targetSquare[1]) === 1 || Number(targetSquare[1]) === 8) && board[y1][x1][1] === 'p';
-
-      switch (piece[1]) {
-        case 'P': pieceName = 'pawn'; break;
-        case 'K': pieceName = 'king'; break;
-        case 'Q': pieceName = 'queen'; break;
-        case 'N': pieceName = 'knight'; break;
-        case 'B': pieceName = 'bishop'; break;
-        case 'R': pieceName = 'rook'; break;
-      }
-
+    function onPieceDrop(
+      sourceSquare: string,
+      targetSquare: string,
+      piece: string
+    ): boolean {
+      void onDrop(sourceSquare, targetSquare, piece);
+      return false;
+    }
+    
+    async function onDrop(sourceSquare: string, targetSquare: string, piece: string): Promise<boolean> {
       try {
         displayLoading(true);
-        axios.post(`${process.env.NEXT_PUBLIC_SERVER}/make_move`, {
+
+        let pieceName = '';
+        let color = piece[0] === 'w' ? 'white' : 'black';
+        let [x1, y1] = getPosition(sourceSquare);
+        let [x2, y2] = getPosition(targetSquare);
+        let promotion: boolean = (Number(targetSquare[1]) === 1 || Number(targetSquare[1]) === 8) && board[y1][x1][1] === 'p';
+
+        switch (piece[1]) {
+          case 'P': pieceName = 'pawn'; break;
+          case 'K': pieceName = 'king'; break;
+          case 'Q': pieceName = 'queen'; break;
+          case 'N': pieceName = 'knight'; break;
+          case 'B': pieceName = 'bishop'; break;
+          case 'R': pieceName = 'rook'; break;
+        }
+
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/make_move`, {
           fen_string: fen,
           piece: promotion ? "pawn" : pieceName,
           color: color,
           from_position: sourceSquare,
           to_position: targetSquare,
           promotion: promotion
-        }).then(response => {
-          
-          let newBoard = response.data.new_board;
-          const status = response.data.move_status;
-  
-          // Check if newBoard is defined and is an 8x8 array
-          if (status && newBoard && Array.isArray(newBoard) && newBoard.length === 8 && newBoard[0].length === 8) {
-              let newFen = mapBoardToFen(newBoard);
-  
-              if (promotion) {
-                newBoard[y2][x2] = piece.toLowerCase();
-                newFen = mapBoardToFen(newBoard);
-  
-                axios.post(`${process.env.NEXT_PUBLIC_SERVER}/set_fen`, {
-                  fen_string: newFen
-                }).then(response => {
-                  newBoard = response.data.board;
-                  displayLoading(false);
-                  
-                  if (newBoard && Array.isArray(newBoard) && newBoard.length === 8 && newBoard[0].length === 8) {
-                    const newFen = mapBoardToFen(newBoard);
-                    setFen(newFen);
-                    setBoard(newBoard);
-                    return true;
-                  }
-                  else {
-                    return false;
-                  }
-                });
-              }
-              else {
+        })
+        
+        let newBoard = response.data.new_board;
+        const status = response.data.move_status;
+
+        // Check if newBoard is defined and is an 8x8 array
+        if (status && newBoard && Array.isArray(newBoard) && newBoard.length === 8 && newBoard[0].length === 8) {
+            let newFen = mapBoardToFen(newBoard);
+
+            if (promotion) {
+              newBoard[y2][x2] = piece.toLowerCase();
+              newFen = mapBoardToFen(newBoard);
+
+              const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/set_fen`, {
+                fen_string: newFen
+              });
+              
+              newBoard = response.data.board;
+              
+              if (newBoard && Array.isArray(newBoard) && newBoard.length === 8 && newBoard[0].length === 8) {
+                const newFen = mapBoardToFen(newBoard);
+                setFen(newFen);
+                setBoard(newBoard);
                 return true;
               }
-            } else {
-              return false;
+              else {
+                return false;
+              }
             }
-        });
+            else {
+              setFen(newFen);
+              setBoard(newBoard);
+              return true;
+            }
+          } else {
+            return false;
+          }
       }
       catch (e) {
         setAlert("Please make valid move");
@@ -309,50 +319,52 @@ export const ThreeDChess = ({ cause = [], displayLoading, editBoard, clickedPiec
             {alert}
           </Alert>
         </Collapse>
-        <Chessboard
-          customArrows = {customArrows}
-          position={fen}
-          onPieceDrop={onDrop}
-          allowDragOutsideBoard={true}
-          onSquareClick={onSquareClicked}
-          customBoardStyle={{
-          transform: "rotateX(27.5deg)",
-          transformOrigin: "center",
-          border: "2px solid #b8836f",
-          borderStyle: "outset",
-          borderRightColor: " #b27c67",
-          borderRadius: "4px",
-          boxShadow: "rgba(0, 0, 0, 0.5) 2px 24px 24px 8px",
-          borderRightWidth: "2px",
-          borderLeftWidth: "2px",
-          borderTopWidth: "0px",
-          borderBottomWidth: "18px",
-          borderTopLeftRadius: "8px",
-          borderTopRightRadius: "8px",
-          padding: "2px 2px 2px 2px",  
-          background: "#e0c094",
-          backgroundSize: "cover",
-          width: "440px",
-          height: "455px"
-          }}
-          customPieces={threeDPieces}
-          customLightSquareStyle={{
-            backgroundColor: "#e0c094",
+        <div style={{ width: '90%', maxWidth: 600, aspectRatio: '1', margin: '0 auto' }}>
+          <Chessboard
+            customArrows = {customArrows}
+            position={fen}
+            onPieceDrop={onPieceDrop}
+            allowDragOutsideBoard={true}
+            onSquareClick={onSquareClicked}
+            customBoardStyle={{
+            transform: "rotateX(27.5deg)",
+            transformOrigin: "center",
+            border: "0px solid #b8836f",
+            borderStyle: "outset",
+            borderRightColor: " #b27c67",
+            borderRadius: "4px",
+            boxShadow: "rgba(0, 0, 0, 0.5) 2px 24px 24px 8px",
+            borderRightWidth: "2px",
+            borderLeftWidth: "2px",
+            borderTopWidth: "0px",
+            borderBottomWidth: "18px",
+            borderTopLeftRadius: "8px",
+            borderTopRightRadius: "8px",
+            padding: "2px 2px 2px 2px",  
+            background: "#e0c094",
             backgroundSize: "cover",
-          }}
-          customDarkSquareStyle={{
-            backgroundColor: "#865745",
-            backgroundSize: "cover",
-          }}
-          animationDuration={500}
-          customSquareStyles={{
-            [activeSquare]: {
-              boxShadow: "inset 0 0 1px 6px rgba(255,255,255,0.75)",
-            },
-          }}
-          onMouseOverSquare={(sq) => setActiveSquare(sq)}
-          onMouseOutSquare={(sq) => setActiveSquare("")}
-        />
+            width: "500px",
+            height: "515px"
+            }}
+            customPieces={threeDPieces}
+            customLightSquareStyle={{
+              backgroundColor: "#e0c094",
+              backgroundSize: "cover",
+            }}
+            customDarkSquareStyle={{
+              backgroundColor: "#865745",
+              backgroundSize: "cover",
+            }}
+            animationDuration={500}
+            customSquareStyles={{
+              [activeSquare]: {
+                boxShadow: "inset 0 0 1px 6px rgba(255,255,255,0.75)",
+              },
+            }}
+            onMouseOverSquare={(sq) => setActiveSquare(sq)}
+            onMouseOutSquare={(sq) => setActiveSquare("")}
+          />
+        </div>
       </div>
     );
 } 

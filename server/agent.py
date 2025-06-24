@@ -4,7 +4,8 @@ from langchain.tools import Tool
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.prompts import PromptTemplate
 from langchain import hub
-from gemini_llm import llm
+# from gemini_llm import llm
+from llama_llm import llm
 from neurosymbolicAI import NeuroSymbolic
 from tools.cypher import cypher_qa
 
@@ -531,7 +532,7 @@ agent_executor = AgentExecutor(
     tools=tools,
     verbose=True,
     handle_parsing_errors="If the generate Cypher Query syntax is incorrect or invalid, you MUST use FULL CONTEXT If output list is NOT EMPTY OTHERWISE TRY AGAIN",
-    request_timeout=600
+    request_timeout=600,
 )
 
 def generate_response(prompt):

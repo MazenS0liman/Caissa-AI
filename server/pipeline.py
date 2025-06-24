@@ -10,6 +10,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import Tool, AgentExecutor, create_react_agent
 from langchain_core.agents import AgentAction, AgentFinish
 from langchain.prompts import PromptTemplate
+from langchain_groq import ChatGroq
 
 # LangGraph
 from langgraph.graph import END, StateGraph
@@ -146,13 +147,19 @@ verifier_prompt = PromptTemplate.from_template("""
     Output:
 """)
 
-llm = ChatGoogleGenerativeAI(
-    model = "gemini-pro",
-    google_api_key = st.secrets["GEMINI_API_KEY"],
-    convert_system_message_to_human = True,
-    verbose = True,
-    # handle_parsing_errors="Check your output and make sure it confirms! Do not output an action and a final answer at the same time.",
-    handle_parsing_errors=True
+# Gemini LLM
+# llm = ChatGoogleGenerativeAI(
+#     model = "gemini-1.5-flash-8b",
+#     google_api_key = st.secrets["GEMINI_API_KEY"],
+#     convert_system_message_to_human = True,
+#     verbose = True,
+# )
+
+# LlAMA 4 Scout LLM
+llm = ChatGroq(
+    temperature=0.7, 
+    model_name="meta-llama/llama-4-scout-17b-16e-instruct", 
+    api_key=st.secrets.get("GROQ_API_KEY")
 )
 
 # Agent State class

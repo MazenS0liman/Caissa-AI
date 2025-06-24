@@ -271,7 +271,7 @@ export const ChessPiece = ({ piece, position, square_size, displayLoading }: ICh
             
             // Check if newBoard is defined and is an 8x8 array
             if (status && newBoard && Array.isArray(newBoard) && newBoard.length === 8 && newBoard[0].length === 8) {
-                let newFen = mapBoardToFen(newBoard   );
+                let newFen = mapBoardToFen(newBoard);
 
                 if (promotion) {
                     promotedPiece = (color == "white" ? "w" : "b") + promotedPiece.toLowerCase();
@@ -281,9 +281,8 @@ export const ChessPiece = ({ piece, position, square_size, displayLoading }: ICh
                     const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/set_fen`, {
                       fen_string: newFen
                     });
-              
+
                     newBoard = response.data.board;
-                    displayLoading(false);
                     
                     if (newBoard && Array.isArray(newBoard) && newBoard.length === 8 && newBoard[0].length === 8) {
                       const newFen = mapBoardToFen(newBoard);
@@ -296,6 +295,8 @@ export const ChessPiece = ({ piece, position, square_size, displayLoading }: ICh
                     }
                 }
                 else {
+                    setFen(newFen);
+                    setBoard(newBoard);
                     return true;
                 }
             } else {

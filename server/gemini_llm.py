@@ -1,5 +1,5 @@
 import streamlit as st
-from langchain_google_genai import GoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 safe = [
     {
@@ -24,8 +24,8 @@ safe = [
     },
 ]
 
-llm = GoogleGenerativeAI(
-    model="gemini-pro", 
+llm = ChatGoogleGenerativeAI(
+    model="gemini-1.5-flash-8b", 
     google_api_key=st.secrets["GEMINI_API_KEY"],
     temperature=0,
 )

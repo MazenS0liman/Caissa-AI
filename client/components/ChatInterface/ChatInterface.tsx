@@ -16,7 +16,7 @@ const chatVariants = {
     exit: {opacity: 0, y: 100}
 }
 
-export const fenContext = createContext<[string, React.Dispatch<React.SetStateAction<string>>]>(["rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", () => null]);
+export const fenContext = createContext<[string, React.Dispatch<React.SetStateAction<string>>]>(["rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", () => null]);
 export const boardContext = createContext<[string[][], React.Dispatch<React.SetStateAction<string[][]>>]>([[], () => null]);
 export const chessContext = createContext<[string, React.Dispatch<React.SetStateAction<string>>, string, React.Dispatch<React.SetStateAction<string>>, string, React.Dispatch<React.SetStateAction<string>>, string, React.Dispatch<React.SetStateAction<string>>, string, React.Dispatch<React.SetStateAction<string>>]>(["", () => null, "", () => null, "", () => null, "", () => null, "", () => null]);
 
@@ -213,7 +213,7 @@ export const getPieceName = (piece: string) => {
 }
 
 export const ChatInterface = () => {
-    const [fen, setFen] = useState<string>("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+    const [fen, setFen] = useState<string>("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
     const [turn, setTurn] = useState<string>("w");
     const [castleRight, setCastleRight] = useState<string>("KQkq");
     const [enpassantMove, setEnpassantMove] = useState<string>("-");

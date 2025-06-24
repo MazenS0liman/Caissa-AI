@@ -4,7 +4,6 @@ from langchain_google_genai import GoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain_core.output_parsers import JsonOutputParser
-from langchain_core.pydantic_v1 import BaseModel, Field
 from pydantic import BaseModel, Field
 from .symbolicAI import Symbolic
 import streamlit as st

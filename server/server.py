@@ -6,6 +6,7 @@ from neurosymbolicAI.symbolicAI.symbolic_ai import Symbolic
 from agent import generate_response
 from pipeline import chat
 import os
+import math
 
 ns = NeuroSymbolic()
 
@@ -48,7 +49,7 @@ def add_tactics_to_graph(filepath, fen_string):
     '''
     
     # Tactics
-    with multiprocessing.get_context('spawn').Pool(processes=os.cpu_count()) as pool:
+    with multiprocessing.get_context('spawn').Pool(processes=max(os.cpu_count(), 10)) as pool:
         tactics = [
             (Symbolic.mate, "white", "Mate"),
             (Symbolic.create_fork_relation, "white", "Fork"),
@@ -64,7 +65,7 @@ def add_tactics_to_graph(filepath, fen_string):
             (Symbolic.move_defend, "white", "Move Defend"),
             (Symbolic.move_threat, "white", "Move Threat"),
             (Symbolic.protected_move, "white", "Protected Move"),
-            (Symbolic.attackted_move, "white", "Attacked Move"),
+            (Symbolic.attacked_move, "white", "Attacked Move"),
             (Symbolic.mate, "black", "Mate"),
             (Symbolic.create_fork_relation, "black", "Fork"),
             (Symbolic.create_absolute_pin_relation, "black", "Absolute Pin"),
@@ -79,7 +80,7 @@ def add_tactics_to_graph(filepath, fen_string):
             (Symbolic.move_defend, "black", "Move Defend"),
             (Symbolic.move_threat, "black", "Move Threat"),
             (Symbolic.protected_move, "black", "Protected Move"),
-            (Symbolic.attackted_move, "black", "Attacked Move")
+            (Symbolic.attacked_move, "black", "Attacked Move")
         ]
         
         results = [
@@ -144,7 +145,7 @@ def post_message():
     except Exception as e:
         print(f"Error {e}")
         response = "Try Again!"
-    
+
     return jsonify({
         'answer': response,
     })
@@ -174,17 +175,22 @@ def make_move():
     color = data.get('color')
     from_position = data.get('from_position')
     to_position = data.get('to_position')
-    promotion = data.get('promotion')
+    promotion = data.get('promotion') 
+    print(f'FEN String: {fen_string}')   
     ns.symbolic.parse_fen(fen_string)
+    ns.symbolic.display_board_cli()
+    print(f"Making move: {piece} from {from_position} to {to_position} for {color} with promotion: {promotion}")
     result, new_board = ns.symbolic.make_move(piece, color, from_position, to_position)
+    ns.symbolic.display_board_cli()
     
-    if new_board == None:
+    if new_board is None:
         new_board = []
     else:
         if not promotion:
             ns.symbolic.construct_graph()
             add_tactics_to_graph(KB_PATH, fen_string)
             
+    print(f"Move result: {result}, New board: {new_board}")
     return jsonify({
         'move_status': len(result) != 0,
         'new_board': new_board
