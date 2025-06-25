@@ -16,7 +16,9 @@ export const MainInterface = () => {
             ref={ref}
             className="w-full h-screen overflow-hidden relative grid place-items-center"
         >
-            <Spline scene="https://prod.spline.design/48WFHrTIRJoK4oAh/scene.splinecode" />
+            <Spline
+                scene="https://prod.spline.design/48WFHrTIRJoK4oAh/scene.splinecode" 
+            />
         </div>
     )
 }

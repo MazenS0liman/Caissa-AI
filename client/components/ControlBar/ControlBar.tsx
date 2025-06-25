@@ -179,7 +179,7 @@ export const ControlBar = ({ openChatFunc, openUploadFenFunc, switchBoard, displ
                                 setMicStatus(true);
                                 openChatFunc(true);
                                 setTalkToGemini(true);
-                                setTalkToReinforcedGemini(true);
+                                setTalkToReinforcedGemini(false);
                                 if (!isListening) {
                                     startListening();
                                 }

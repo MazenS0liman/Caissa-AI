@@ -1,25 +1,27 @@
-# <img src="images/eureka.png" alt="Eureka Chatbot" width="100" align="center" style="margin-right: 10px;"/> Eureka: A Multi-Agent Neurosymbolic System for Chess
+# <img src="images/caïssa.png" alt="Caïssa Chatbot" width="100" align="center" style="margin-right: 10px;"/> Caïssa: A Neuro-Symbolic Chess Agent for Explainable Move Suggestion and Grounded Commentary
 
-
-<img src="images/eureka_main.jpeg" alt="Eureka Main Image" align="center" style="margin-right: 10px;"/>
+<img src="images/caïssa_main.jpeg" alt="Caïssa Main Image" align="center" style="margin-right: 10px;"/>
 
 ## Motivation
-Eureka is an approach that provides reasoning and understanding of the chess move. It transmits information represented in the knowledge base in Prolog to nodes and edges as a knowledge graph in Neo4j that can be queried directly to retrieve structured information from the knowledge graph. This information advocates the reasoning behind the suggested move. This allows to build dynamic ontologies as a solution where static ontologies would fail, since small variances between chessboards can have an enormous difference in the information represented in the ontology. By leveraging the capabilities of combining both a large model called Gemini and the existing knowledge in Neo4j using LangChain, Eureka is capable of creating chess commentary based on user input related to piece positions and relations between pieces on a chessboard and providing a move commentary. Eureka also utilizes a newly introduced library called LangGraph to implement a verification module that acts as a guard to prevent any incorrectly generated commentary where the results obtained from the system almost contain no hallucinations. This prototype can be scaled to be a software solution that assists in teaching beginners chess rules and tactics, where existing solutions either provide a basic explanation or statistical representation that does not help a beginner understand the reason behind a chess move.
+Caïssa is an approach that provides reasoning and understanding of the chess move. It transmits information represented in the knowledge base in Prolog to nodes and edges as a knowledge graph in Neo4j that can be queried directly to retrieve structured information from the knowledge graph. This information advocates the reasoning behind the suggested move. This allows to build dynamic ontologies as a solution where static ontologies would fail, since small variances between chessboards can have an enormous difference in the information represented in the ontology. By leveraging the capabilities of combining both a large model called Gemini and the existing knowledge in Neo4j using LangChain, Caïssa is capable of creating chess commentary based on user input related to piece positions and relations between pieces on a chessboard and providing a move commentary. Caïssa also utilizes a newly introduced library called LangGraph to implement a verification module that acts as a guard to prevent any incorrectly generated commentary where the results obtained from the system almost contain no hallucinations. This prototype can be scaled to be a software solution that assists in teaching beginners chess rules and tactics, where existing solutions either provide a basic explanation or statistical representation that does not help a beginner understand the reason behind a chess move.
 
 ## Video
 https://github.com/user-attachments/assets/6b49da4f-532f-480b-a69e-00d359e66eeb
 
-## Architecture
-### Eureka's Architecture
-As an approach for creating a system capable of generating chess commentary and diminishes the amount of hallucination. Eureka grounds LLM, which is Gemini with the built knowledge graphs in Neo4j, which result in the construction of a Retrieval Augmented Generation (RAG) system that enhances the outcome of large language model (LLM) based on the facts stored in the knowledge graph in Neo4j.
+> [!NOTE]
+> The chatbot was previously called Eureka, but we changed it to Caïssa to match the theme.
 
-Eureka utilizes LangChain that allow to create agents from Large Language Models such as Gemini and specify the purpose of each agent using Prompt Engineering by specifying its role and context and giving it examples of how to perform its task. The process of providing chess commentary is the following:
+## Architecture
+### Caïssa's Architecture
+As an approach for creating a system capable of generating chess commentary and diminishes the amount of hallucination. Caïssa grounds LLM, which is Gemini with the built knowledge graphs in Neo4j, which result in the construction of a Retrieval Augmented Generation (RAG) system that enhances the outcome of large language model (LLM) based on the facts stored in the knowledge graph in Neo4j.
+
+Caïssa utilizes LangChain that allow to create agents from Large Language Models such as Gemini and specify the purpose of each agent using Prompt Engineering by specifying its role and context and giving it examples of how to perform its task. The process of providing chess commentary is the following:
 1. User clicks on the toggle button to use Gemini and sends a request from the browser using Next.js with a query in natural language.
 2. The request is handled at the backend using APIs in Flask, which contains an instance of the chess commentary agent.
 3. The agent is configured with tools that allow it to use other agents by forming chains for a specific type of question, such as for questions that are related to chess pieces position and moves, it would use GraphCypherQAChain from LangChain to generate a Cypher query that can be executed and retrieve a structured response that is sent to the main agent to transform it back to natural language, or if the query is about tactics, it would use the basic neurosymbolic module and summarise its answer.
 4. In both cases, the retrieved answer, either from sub-agent or from the neurosymbolic module, is sent back to the user in the body of the response to the request made in the browser.
 
-<img src="images/eureka_solver_basic_architecture.png" alt="Eureka Basic Architecture Image" align="center" style="margin: 10px;"/>
+<img src="images/caïssa_solver_basic_architecture.png" alt="Caïssa Basic Architecture Image" align="center" style="margin: 10px;"/>
 
 ### Example
 Let’s call the first agent “the conductor” which is a person who directs the performance of an orchestra as it orchestrate what module to use based on the user question and what information to pass to the modules.
@@ -29,13 +31,13 @@ to pick. The options are the GraphCypherQA Chain tool, responsible for generatin
 
 If the conductor choses the GraphCypherQA Chain tool then it is capable of grounding LLM based on the context stored in the knowledge graph in Neo4j, built using Prolog, to derive the correct response to a user query.
 
-<img src="images/eureka_commentary_example_diagram.png" alt="Eureka Example Image" align="center" style="margin: 10px;"/>
+<img src="images/caïssa_commentary_example_diagram.png" alt="Caïssa Example Image" align="center" style="margin: 10px;"/>
 
 ### Final Architecure Overview
 Even though progress was made in providing chess commentary with logical correctness, challenges were encountered. Obstacles arose as the model did not consistently
-generate answers for the same prompt. Responses varied from full answers to partial ones, or no answer at all with the statement that it did not know the answer. Additionally, efforts were made to minimise hallucination, achieved by prompting the LLM to provide answers based on information in the knowledge graph in Neo4j. However, there is still a risk of hallucination, as LLM (the conductor) may deviate from the prompt and provide an answer from its knowledge. To mitigate this, the whole architecture of Eureka was modified by adding the verifier module as an attempt to solve this problem using LangGraph.
+generate answers for the same prompt. Responses varied from full answers to partial ones, or no answer at all with the statement that it did not know the answer. Additionally, efforts were made to minimise hallucination, achieved by prompting the LLM to provide answers based on information in the knowledge graph in Neo4j. However, there is still a risk of hallucination, as LLM (the conductor) may deviate from the prompt and provide an answer from its knowledge. To mitigate this, the whole architecture of Caïssa was modified by adding the verifier module as an attempt to solve this problem using LangGraph.
 
-<img src="images/eureka_overall_architecture.png" alt="Eureka Final Architecture Image" align="center" style="margin: 10px;"/>
+<img src="images/caïssa_overall_architecture.png" alt="Caïssa Final Architecture Image" align="center" style="margin: 10px;"/>
 
 LangGraph enables the coordination of multiple agents across numerous steps of computation in a cyclic manner. The verifier module consists of two phases after receiving the chess commentary from the chess commentary agent and the Forsyth-Edwards Notation (FEN) representation of the chessboard.
 
@@ -55,11 +57,11 @@ Every module follows a number of steps, utilising tiny agents to perform various
 <img src="images/verifier_module.png" alt="Verifier Module Phase 2 Image" align="center" style="margin: 10px;"/>
 
 ## Features
-### Chat with Eureka <img src="images/message.png" alt="Message Image" width="50" align="left" style="margin-right: 10px;"/>
-Engage with Eureka to grasp tactics and counterattacks for each move.
+### Chat with Caïssa <img src="images/message.png" alt="Message Image" width="50" align="left" style="margin-right: 10px;"/>
+Engage with Caïssa to grasp tactics and counterattacks for each move.
 
-### Speak to Eureka <img src="images/mic.png" alt="Message Image" width="50" align="left" style="margin-right: 10px;"/>
-An exciting Speech-Recognition feature that lets you interact with Eureka using your voice!
+### Speak to Caïssa <img src="images/mic.png" alt="Message Image" width="50" align="left" style="margin-right: 10px;"/>
+An exciting Speech-Recognition feature that lets you interact with Caïssa using your voice! (Supported only in Chrome)
 
 ### Reset Chessboard <img src="images/reset.png" alt="Message Image" width="50" align="left" style="margin-right: 10px;"/>
 Reset the chessboard to the initial state (Forsyth-Edwards Notation: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1).
@@ -68,7 +70,7 @@ Reset the chessboard to the initial state (Forsyth-Edwards Notation: rnbqkbnr/pp
 Get creative with the chessboard by customizing it using Forsyth-Edwards Notation!
 
 ### Change Theme <img src="images/threed.png" alt="Message Image" width="50" align="left" style="margin-right: 10px;"/>
-Customize the chessboard theme to your preference (more themes coming soon!).
+Customize the chessboard theme to your preference.
 
 ## Frameworks and Technologies Used
 
@@ -102,26 +104,26 @@ Customize the chessboard theme to your preference (more themes coming soon!).
 
 ## Screenshots
 ### Chessboard
-<img src="images/eureka_default_chessboard.jpeg" alt="Eureka Default Image" align="center" style="margin-right: 10px;"/>
+<img src="images/caïssa_default_chessboard.jpeg" alt="Caïssa Default Image" align="center" style="margin-right: 10px;"/>
 
 ### Change Chessboard Theme
-<img src="images/eureka_3d_chessboard.jpeg" alt="Eureka 3D Chessboard Image" align="center" style="margin-right: 10px;"/>
+<img src="images/caïssa_3d_chessboard.jpeg" alt="Caïssa 3D Chessboard Image" align="center" style="margin-right: 10px;"/>
 
 ### Edit Chessboard
-<img src="images/eureka_edit.jpeg" alt="Eureka Edit Image" align="center" style="margin-right: 10px;"/>
+<img src="images/caïssa_edit.jpeg" alt="Caïssa Edit Image" align="center" style="margin-right: 10px;"/>
 
-### Chat with Eureka
-<img src="images/eureka_chat.jpeg" alt="Eureka Chat Image" align="center" style="margin-right: 10px;"/>
+### Chat with Caïssa
+<img src="images/caïssa_chat_1.jpeg" alt="Caïssa Chat Image 1" align="center" style="margin-right: 10px;"/>
 
-### Chat with Reinforced Eureka
-<img src="images/eureka_chat_reinforced.jpeg" alt="Eureka Chat Reinforced Image" align="center" style="margin-right: 10px;"/>
+### Chat with Reinforced Caïssa
+<img src="images/caïssa_chat_reinforced.jpeg" alt="Caïssa Chat Reinforced Image" align="center" style="margin-right: 10px;"/>
 
-### Speak to Eureka
-<img src="images/eureka_speak.jpeg" alt="Eureka Speak Image" align="center" style="margin-right: 10px;"/>
+### Speak to Caïssa
+<img src="images/caïssa_speak.jpeg" alt="Caïssa Speak Image" align="center" style="margin-right: 10px;"/>
 
 ## Tactics & Concepts
 ### Tactics
-The following table demonstrate tactics that are supported by basic eureka.
+The following table demonstrate tactics that are supported by basic Caïssa.
 
 **Tactic**  | **Definition**
 ------------- | -------------
@@ -137,7 +139,7 @@ The following table demonstrate tactics that are supported by basic eureka.
 **Interference** | An interference occurs when there is a move that interferes between opponent pieces where one of the pieces defends the other piece.
 
 ### Concepts
-The following table demonstrate concepts that are supported by both basic and reinforced eureka.
+The following table demonstrate concepts that are supported by both basic and reinforced Caïssa.
 
 **Concept**  | **Definition**
 ------------- | -------------
@@ -206,7 +208,7 @@ def add_tactics_to_graph(filepath, fen_string):
             r.get()
 ```
 
-### Chat with Reinforced Eureka with LangGraph
+### Chat with Reinforced Caïssa with LangGraph
 ```python
 def chat(input, fen_string) -> str:
     '''
@@ -234,15 +236,15 @@ def chat(input, fen_string) -> str:
 ```
 
 ## API Reference
-#### Chat With Eureka
+#### Chat With Caïssa
 * **Endpoint**: `chatbot`
 * **Method**: GET
-* **Description**: Chat with Eureka.
+* **Description**: Chat with Caïssa.
   
-#### Chat With Reinforced Eureka
+#### Chat With Reinforced Caïssa
 * **Endpoint**: `reinforced_chatbot`
 * **Method**: GET
-* **Description**: Chat with Eureka enhanced by LangGraph.
+* **Description**: Chat with Caïssa enhanced by LangGraph.
 
 #### Retrieve Legal Moves
 * **Endpoint**: `legal_moves`
@@ -275,7 +277,7 @@ def chat(input, fen_string) -> str:
 
 ## Usage Instructions
 ### 1. Configure Tokens:
-  *  Open the `Eureka/.streamlit/secrets.toml` file.
+  *  Open the `Caïssa/.streamlit/secrets.toml` file.
   *  Set your Gemini and Neo4j tokens in the file.
 
 ### 2. Set Up the Client:
@@ -325,14 +327,14 @@ def chat(input, fen_string) -> str:
     ```
 
 ## :warning: Note
-- Eureka requires lots of computational power, so it tends to run slowly on older devices.
-- To chat with Eureka you need to toggle the button first.
+- Caïssa requires lots of computational power, so it tends to run slowly on older devices.
+- To chat with Caïssa you need to toggle the button first.
 
 > [!CAUTION]
-> Although the verifier module was added to Eureka to reduce the occurrence of hallucinations, it can still make mistakes.
+> Although the verifier module was added to Caïssa to reduce the occurrence of hallucinations, it can still make mistakes.
 
 ## Contribute
-Eureka is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
+Caïssa is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
 
 ## Hope You Enjoy :heart:
-<img src="images/flower.png" alt="Eureka Example Image" align="center" style="margin: 10px;"/>
+<img src="images/flower.png" alt="Caïssa Example Image" align="center" style="margin: 10px;"/>

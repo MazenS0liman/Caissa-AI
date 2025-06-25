@@ -1,6 +1,7 @@
 import os
 import json
-from langchain_google_genai import GoogleGenerativeAI
+from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.agents import AgentExecutor, create_react_agent
 from kor import create_extraction_chain, Object, Text
@@ -16,10 +17,18 @@ class Verifier():
     
     def __init__(self):
         
-        self.llm = GoogleGenerativeAI(
-            model="gemini-pro",
-            google_api_key=st.secrets["GEMINI_API_KEY"],
-            temperature=0,
+        # Gemini LLM
+        # self.llm = ChatGoogleGenerativeAI(
+        #     model="gemini-1.5-flash-8b", 
+        #     google_api_key=st.secrets["GEMINI_API_KEY"],
+        #     temperature=0,
+        # )
+
+        # LlAMA 4 Scout LLM
+        self.llm = ChatGroq(
+            temperature=0.7,
+            model_name="meta-llama/llama-4-scout-17b-16e-instruct", 
+            api_key=st.secrets.get("GROQ_API_KEY")
         )
 
         self.sym = Symbolic()

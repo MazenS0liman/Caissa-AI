@@ -68,7 +68,7 @@ export const ChatBot = ({ fen , updateBoard, updateCause, closeChat, talkToGemin
             setMessages(newMessages);
             setPrompt("");
     
-            axios.post(`${process.env.NEXT_PUBLIC_SERVER}/reinforced_chatbot`, {
+            axios.post(`${process.env.NEXT_PUBLIC_SERVER}/chatbot`, {
                 prompt: storePrompt,
                 fen: fenString
             }).then((response) => {
@@ -247,10 +247,10 @@ export const ChatBot = ({ fen , updateBoard, updateCause, closeChat, talkToGemin
             <div className={styles['chat-title-div']}>
                 <div className={styles['chat-sub1-title-div']}>
                     {isOn &&
-                        <p className={styles['chat-bot-title']}> Eureka</p>
+                        <p className={styles['chat-bot-title']}> Caïssa</p>
                     }
                     {!isOn &&
-                        <p className={styles['chat-bot-title']}> Eureka</p>
+                        <p className={styles['chat-bot-title']}> Caïssa</p>
                     }
                     <div className={styles["switch"]} data-isOn={isOn}>
                         <motion.div className={styles["handle"]} layout transition={spring} onClick={(e) => toggleSwitch(e)}/>

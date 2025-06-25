@@ -157,7 +157,7 @@ verifier_prompt = PromptTemplate.from_template("""
 
 # LlAMA 4 Scout LLM
 llm = ChatGroq(
-    temperature=0.7, 
+    temperature=0, 
     model_name="meta-llama/llama-4-scout-17b-16e-instruct", 
     api_key=st.secrets.get("GROQ_API_KEY")
 )

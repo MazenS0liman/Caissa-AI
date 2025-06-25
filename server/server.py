@@ -116,7 +116,7 @@ def get_legal_moves():
 @app.route("/reinforced_chatbot", methods=['POST'])
 def post_message_with_reinforced_chatbot():
     '''
-    Chat with Eureka llm enhanced by langGraph.
+    Chat with Caïssa llm enhanced by langGraph.
     '''
     data = request.json
     prompt = data.get('prompt')
@@ -135,7 +135,7 @@ def post_message_with_reinforced_chatbot():
 @app.route("/chatbot", methods=['POST'])
 def post_message():
     '''
-    Chat with Eureka.
+    Chat with Caïssa.
     '''
     data = request.json
     prompt = data.get('prompt')

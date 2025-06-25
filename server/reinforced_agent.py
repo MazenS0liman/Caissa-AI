@@ -2,7 +2,8 @@ from langchain.agents import AgentExecutor, create_react_agent
 from langchain.tools import Tool
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.prompts import PromptTemplate
-from gemini_llm import llm
+# from gemini_llm import llm
+from llama_llm import llm
 from neurosymbolicAI import NeuroSymbolic
 from tools.cypher import cypher_qa
 
