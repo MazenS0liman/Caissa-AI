@@ -1,4 +1,4 @@
-# <img src="images/caïssa.png" alt="Caïssa Chatbot" width="100" align="center" style="margin-right: 10px;"/> Caïssa: A Neuro-Symbolic Chess Agent for Explainable Move Suggestion and Grounded Commentary
+# <img src="images/caïssa.png" alt="Caïssa Chatbot" width="100" align="center" style="margin-right: 10px;"/> Caïssa: Multi-Agent Neuorsymbolic  Approach for Chess
 
 <img src="images/caïssa_main.jpeg" alt="Caïssa Main Image" align="center" style="margin-right: 10px;"/>
 
