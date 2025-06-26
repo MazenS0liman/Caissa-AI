@@ -268,7 +268,7 @@ def chat(input, fen_string) -> str:
 ### 2. Obtain Your Tokens
 * **NEO4J Token:** Get your token from [Neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started).
 * **GEMINI Token:** Generate your token through [AI Studio](https://aistudio.google.com/app/apikey).
-* **Groq Toen:** Generate your token from [Groq](https://console.groq.com/keys).
+* **Groq Token:** Generate your token from [Groq](https://console.groq.com/keys).
 
 ## Requirements
 
@@ -335,6 +335,9 @@ def chat(input, fen_string) -> str:
 
 ## Contribute
 Caïssa is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
+
+## License
+This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Hope You Enjoy :heart:
 <img src="images/flower.png" alt="Caïssa Example Image" align="center" style="margin: 10px;"/>
