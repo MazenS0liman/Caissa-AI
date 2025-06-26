@@ -329,12 +329,10 @@ def chat(input, fen_string) -> str:
 ## :warning: Note
 - Caïssa requires lots of computational power, so it tends to run slowly on older devices.
 - To chat with Caïssa you need to toggle the button first.
+- Caïssa is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
 
 > [!CAUTION]
 > Although the verifier module was added to Caïssa to reduce the occurrence of hallucinations, it can still make mistakes.
-
-## Contribute
-Caïssa is still in its prototype stage and could be improved with additional logic to fully grasp all aspects of a chess game, ultimately becoming a comprehensive tool to assist chess beginners.
 
 ## License
 This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
