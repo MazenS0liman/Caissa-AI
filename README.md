@@ -9,7 +9,7 @@ Caïssa is an approach that provides reasoning and understanding of the chess mo
 https://github.com/user-attachments/assets/6b49da4f-532f-480b-a69e-00d359e66eeb
 
 > [!NOTE]
-> The chatbot was previously called Eureka, but we changed it to Caïssa to match the theme.
+> The chatbot was previously called Eureka, but we changed it to Caïssa to match the theme. (Caïssa is a fictional Thracian dryad portrayed as the goddess of chess. She was first mentioned during the Renaissance by Italian poet Hieronymus Vida.)
 
 ## Architecture
 ### Caïssa's Architecture
