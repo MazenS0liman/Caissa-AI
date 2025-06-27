@@ -334,6 +334,19 @@ def chat(input, fen_string) -> str:
 > [!CAUTION]
 > Although the verifier module was added to Caïssa to reduce the occurrence of hallucinations, it can still make mistakes.
 
+## Citation
+```
+@misc{mazen2025caissa,
+  title     = {Caïssa AI: A Neuro-Symbolic Chess Agent for Explainable Move Suggestion and Grounded Commentary},
+  author    = {Mazen Soliman and Nourhan Ehab},
+  booktitle = {KI 2025 - 48th German Conference on Artificial Intelligence},
+  year      = {2025},
+  publisher = {Springer},
+  institution = {German University in Cairo},
+  url       = {https://github.com/MazenS0liman/Caissa-AI}
+}
+```
+
 ## License
 This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
 
