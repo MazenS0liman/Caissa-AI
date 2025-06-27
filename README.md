@@ -1,4 +1,4 @@
-# <img src="images/caïssa.png" alt="Caïssa Chatbot" width="100" align="center" style="margin-right: 10px;"/> Caïssa: Multi-Agent Neuorsymbolic  Approach for Chess
+# <img src="images/caïssa.png" alt="Caïssa Chatbot" width="100" align="center" style="margin-right: 10px;"/> Caïssa: Multi-Agent Neurosymbolic  Approach for Chess
 
 <img src="images/caïssa_main.jpeg" alt="Caïssa Main Image" align="center" style="width: 100%; height: auto;"/>
 
