@@ -335,6 +335,7 @@ def chat(input, fen_string) -> str:
 > Although the verifier module was added to Caïssa to reduce the occurrence of hallucinations, it can still make mistakes.
 
 ## Citation
+If you use this project in your research, please consider citing the paper:
 ```
 @misc{mazen2025caissa,
   title     = {Caïssa AI: A Neuro-Symbolic Chess Agent for Explainable Move Suggestion and Grounded Commentary},
